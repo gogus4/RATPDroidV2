@@ -1,0 +1,72 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/scrollViewStyle" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewAddStation"
+            style="@style/textViewStyle"
+            android:padding="10dp" 
+            android:gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/name_station" />
+
+            <EditText style="@style/editTextStyle"
+                android:id="@+id/editTextNameAddStation" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/longitude"
+                android:id="@+id/textViewLongitudeAddStation" />
+
+            <EditText style="@style/editTextStyle"
+                android:id="@+id/editTextLongitudeAddStation" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/latitude"
+                android:id="@+id/textViewLatitudeAddStation" />
+
+            <EditText style="@style/editTextStyle"
+                android:id="@+id/editTextLatitudeAddStation" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonAddStations"
+            style="@style/buttonStyle"
+            android:layout_marginTop="10dp"
+            android:onClick="onButtonAddStationsClick"
+            android:text="@string/add"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+</ScrollView>

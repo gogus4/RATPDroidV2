@@ -1,0 +1,30 @@
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/background_color"
+        android:orientation="vertical" >
+        
+        <TextView
+            android:id="@+id/textViewListStations"
+            style="@style/textViewStyle"
+            android:padding="10dp"
+            android:gravity="center_horizontal" />
+
+        <ListView
+            android:id="@+id/listAllStations"
+            style="@style/listViewStyle"
+            android:layout_height="300dp"
+            android:layout_weight="10" />
+
+        <Button
+            android:id="@+id/buttonAddStations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onButtonAddStationsClick"
+            android:layout_marginTop="5dp"
+            android:text="@string/add" />
+    </LinearLayout>

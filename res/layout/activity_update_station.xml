@@ -1,0 +1,70 @@
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewUpdateStation"
+            style="@style/textViewStyle"
+            android:padding="10dp"
+            android:gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/name_update_station" />
+
+            <EditText
+                android:id="@+id/editTextNameUpdateStation"
+                style="@style/editTextStyle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/longitude" />
+
+            <EditText
+                android:id="@+id/editTextLongitudeUpdateStation"
+                style="@style/editTextStyle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/latitude" />
+
+            <EditText
+                android:id="@+id/editTextLatitudeUpdateStation"
+                style="@style/editTextStyle" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonUpdateStation"
+            style="@style/buttonStyle"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:onClick="onButtonUpdateStationClick"
+            android:text="@string/update" />
+    </LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RATPDroid</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="rer">RER</string>
+    <string name="metro">METRO</string>
+    <string name="tramway">TRAMWAY</string>
+    <string name="bus">BUS</string>
+    <string name="reset">Initialiser</string>
+    <string name="search">Rechercher</string>
+    <string name="add">Ajouter</string>
+    <string name="gmaps">Google Maps</string>
+    <string name="title_activity_list_transports">ListTransports</string>
+    <string name="title_activity_list_stations">ListStations</string>
+    <string name="title_activity_add_station">AddStation</string>
+    <string name="name_station">Nom de la station : </string>
+    <string name="title_activity_detail_station">DetailStation</string>
+    <string name="update">Modifier</string>
+    <string name="delete">Supprimer</string>
+    <string name="title_activity_update_station">UpdateStation</string>
+    <string name="name">Nom : </string>
+    <string name="longitude">Longitude : </string>
+    <string name="latitude">Latitude : </string>
+    <string name="name_update_station">Nom souhaité de la station : </string>
+    <string name="title_activity_google_maps">GoogleMaps</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+</resources>

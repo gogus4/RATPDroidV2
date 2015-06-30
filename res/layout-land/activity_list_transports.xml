@@ -1,0 +1,37 @@
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_color"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" >
+        
+         <fragment
+	        android:id="@+id/searchFragment"
+	        android:name="esgi.project.ratpdroid.SearchFragment"
+	        android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_margin="10dp">
+    	</fragment>
+    	
+         <LinearLayout android:orientation="horizontal"
+             		   android:layout_width="match_parent"
+		    		   android:layout_height="match_parent"
+		    		   android:baselineAligned="false">
+		    		 
+		    <fragment
+			     android:id="@+id/listTransportsFragment"
+			     android:name="esgi.project.ratpdroid.ListTransportsFragment"
+			     android:layout_width="wrap_content"
+			     android:layout_height="match_parent"
+			     android:layout_weight=".5" />
+
+	        <fragment
+	        	android:id="@+id/listStationsFragment"
+	        	android:name="esgi.project.ratpdroid.ListStationsFragment"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="match_parent"
+	        	android:layout_weight=".5"
+	        	android:layout_marginLeft="5dp" />
+        </LinearLayout>
+    </LinearLayout>

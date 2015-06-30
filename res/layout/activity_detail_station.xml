@@ -1,0 +1,64 @@
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/background_color"
+        android:orientation="vertical" >
+
+        <LinearLayout style="@style/LinearLayoutDetailStation" android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/buttonUpdateStation"
+                style="@style/buttonStyle"
+                android:onClick="onButtonUpdateClick"
+                android:text="@string/update" />
+
+            <Button
+                android:id="@+id/buttonDeleteStation"
+                style="@style/buttonStyle"
+                android:onClick="onButtonDeleteClick"
+                android:text="@string/delete" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LinearLayoutDetailStation" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:text="@string/name"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/textViewNameStation"
+                style="@style/textViewStyle"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LinearLayoutDetailStation" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:text="@string/longitude" />
+
+            <TextView
+                android:id="@+id/textViewLongitudeStation"
+                style="@style/textViewStyle"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LinearLayoutDetailStation" >
+
+            <TextView
+                style="@style/textViewStyle"
+                android:text="@string/latitude" />
+
+            <TextView
+                android:id="@+id/textViewLatitudeStation"
+                style="@style/textViewStyle"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
