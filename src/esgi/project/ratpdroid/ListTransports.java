@@ -4,12 +4,10 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 public class ListTransports extends Activity {
 
 	private static final String TAG = "ListTransports";
-	private TextView textViewListTransports;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +35,5 @@ public class ListTransports extends Activity {
 		
 		fragmentTransport.setTransports(getIntent().getStringExtra("Transport"));
 		fragmentTransport.init();
-		
-		/*ListStationsFragment fragmentStations = (ListStationsFragment)fragmentManager.findFragmentById(R.id.listStationsFragment);
-		
-		if(fragmentStations != null)
-		{
-			fragmentStations.init();
-		}*/
 	}
 }

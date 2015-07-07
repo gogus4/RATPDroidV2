@@ -1,26 +1,9 @@
 package esgi.project.ratpdroid;
 
-import java.util.List;
-
-import esgi.project.ratpdroid.db.LineDAO;
-import esgi.project.ratpdroid.db.StopDAO;
-import esgi.project.ratpdroid.model.Line;
-import esgi.project.ratpdroid.model.Stop;
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class ListStations extends Activity {
 
