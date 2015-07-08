@@ -58,4 +58,9 @@ public class SearchFragment extends Fragment {
 		
 		return view;
 	}
+	
+	public void update()
+	{
+		editTextSearch.setText(R.string.search);
+	}
 }

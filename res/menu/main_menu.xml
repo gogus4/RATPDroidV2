@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/resetDB"
+        android:icon="@drawable/reload_refresh"
+        android:showAsAction="ifRoom"
+        android:title="Rafraichir la base de données"/>
+    
+    <item
+    android:id="@+id/changeLanguage"
+    android:showAsAction="always"
+    android:title="Changer la langue"
+    android:icon="@drawable/parameter">
+    <menu>
+        <item
+            android:id="@+id/french"
+            android:title="Français"
+            android:showAsAction="never"
+            android:icon="@drawable/fr_icon"/>
+
+        <item
+            android:id="@+id/english"
+            android:title="Englais"
+            android:showAsAction="never"
+            android:icon="@drawable/en_icon"/>
+    </menu>
+</item>
+
+</menu>

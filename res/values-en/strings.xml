@@ -15,12 +15,12 @@
     <string name="rer">RER</string>
     <string name="reset">Reset</string>
     <string name="search">Search</string>
-    <string name="title_activity_add_station">AddStation</string>
-    <string name="title_activity_detail_station">DetailStation</string>
+    <string name="title_activity_add_station">Add a station</string>
+    <string name="title_activity_detail_station">Detail of station</string>
     <string name="title_activity_google_maps">GoogleMaps</string>
-    <string name="title_activity_list_stations">ListStations</string>
-    <string name="title_activity_list_transports">ListTransports</string>
-    <string name="title_activity_update_station">UpdateStation</string>
+	<string name="title_activity_list_transports">List of transports</string>
+    <string name="title_activity_list_stations">List of stations</string>
+    <string name="title_activity_update_station">Update station</string>
     <string name="tramway">TRAMWAY</string>
     <string name="update">Update</string>
     <string name="title_activity_splash_screen">SplashScreen</string>

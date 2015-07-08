@@ -1,17 +1,23 @@
 package esgi.project.ratpdroid;
 
 import esgi.project.ratpdroid.db.StopDAO;
+import esgi.project.ratpdroid.utils.ConfigHelper;
+import esgi.project.ratpdroid.utils.DBHelper;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailStation extends Activity {
 
@@ -27,8 +33,47 @@ public class DetailStation extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_station);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setTitle(R.string.title_activity_detail_station);
+		getActionBar().setSubtitle(Datas.GetInstance().GetCurrentStop().toString());
 
 		Log.v(TAG, "Methode onCreate");
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main_menu, menu);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			ActionBar actionBar = getActionBar();
+			actionBar.setDisplayShowHomeEnabled(false);
+		}
+
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {		
+		switch (item.getItemId()) {
+			case R.id.resetDB:
+				launchRingDialog(this.findViewById(R.layout.activity_detail_station));
+				break;
+			case R.id.french:
+				ConfigHelper.getInstance().changeLang(getBaseContext(),"fr");
+				updateTexts();
+				break;
+			case R.id.english:
+				ConfigHelper.getInstance().changeLang(getBaseContext(),"en");
+				updateTexts();
+				break;	
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	private void updateTexts()
+	{
+		getActionBar().setTitle(R.string.title_activity_detail_station);
 	}
 
 	protected void onStart() {
@@ -93,5 +138,25 @@ public class DetailStation extends Activity {
 								((Activity) that).finish();
 							}
 						}).setNegativeButton("Non", null).show();
+	}
+	
+	public void launchRingDialog(View view) {
+		final ProgressDialog ringProgressDialog = ProgressDialog
+				.show(DetailStation.this,
+						"Patientez ...",
+						"Merci de patientez pendant la réinitialisation de la base de données ...",
+						true);
+		ringProgressDialog.setCancelable(true);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(2000);
+					DBHelper.getInstance().resetBDD(getBaseContext());
+				} catch (Exception e) {
+				}
+				ringProgressDialog.dismiss();
+			}
+		}).start();
 	}
 }
