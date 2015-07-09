@@ -62,12 +62,12 @@
             android:label="@string/title_activity_add_station"
             android:windowSoftInputMode="stateHidden"
             android:launchMode="singleTop"
-            android:parentActivityName=".DetailStation"
+            android:parentActivityName=".ListStations"
             android:configChanges="locale">
             
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DetailStation" />
+                android:value=".ListStations" />
         </activity>
         
         <activity

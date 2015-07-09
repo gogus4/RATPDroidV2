@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,12 @@ public class DetailStation extends Activity {
 	private TextView textViewNameStation;
 	private TextView textViewLongitudeStation;
 	private TextView textViewLatitudeStation;
-
+	
+	private Button buttonUpdateStation;
+	private Button buttonDeleteStation;
+	private TextView textViewStyle;
+	private TextView nameDetailStation;
+	
 	private Intent intent;
 
 	@Override
@@ -54,7 +60,8 @@ public class DetailStation extends Activity {
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {		
+	public boolean onOptionsItemSelected(MenuItem item) {	
+				
 		switch (item.getItemId()) {
 			case R.id.resetDB:
 				launchRingDialog(this.findViewById(R.layout.activity_detail_station));
@@ -68,12 +75,17 @@ public class DetailStation extends Activity {
 				updateTexts();
 				break;	
 		}
+				
 		return super.onOptionsItemSelected(item);
 	}
 	
 	private void updateTexts()
 	{
 		getActionBar().setTitle(R.string.title_activity_detail_station);
+		
+		buttonUpdateStation.setText(R.string.update);
+		buttonDeleteStation.setText(R.string.delete);
+		nameDetailStation.setText(R.string.name);
 	}
 
 	protected void onStart() {
@@ -89,6 +101,10 @@ public class DetailStation extends Activity {
 		textViewNameStation = (TextView) findViewById(R.id.textViewNameStation);
 		textViewLongitudeStation = (TextView) findViewById(R.id.textViewLongitudeStation);
 		textViewLatitudeStation = (TextView) findViewById(R.id.textViewLatitudeStation);
+		
+		buttonUpdateStation = (Button) findViewById(R.id.buttonUpdateStation);
+		buttonDeleteStation = (Button) findViewById(R.id.buttonDeleteStation);
+		nameDetailStation = (TextView) findViewById(R.id.nameDetailStation);
 
 		textViewNameStation.setText(Datas.GetInstance().GetCurrentStop()
 				.toString());
@@ -122,13 +138,7 @@ public class DetailStation extends Activity {
 									int which) {
 								Log.v(TAG, "Click sur Oui");
 
-								StopDAO sdao = new StopDAO(that);
-								sdao.open();
-
-								sdao.remove(Datas.GetInstance()
-										.GetCurrentStop());
-
-								sdao.close();
+								DBHelper.getInstance().removeStop(that);
 								
 								MyApplication app = ((MyApplication) ((Activity) that).getApplication());
 								app.initDatas();

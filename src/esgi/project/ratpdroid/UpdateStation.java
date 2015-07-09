@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,7 +29,10 @@ public class UpdateStation extends Activity {
 	private EditText editTextNameUpdateStation;
 	private EditText editTextLatitudeUpdateStation;
 	private EditText editTextLongitudeUpdateStation;
-
+	
+	private TextView textViewNameUpdateStation;
+	private Button buttonUpdateStation;
+	
 	private Intent intent;
 
 	@Override
@@ -56,7 +60,8 @@ public class UpdateStation extends Activity {
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {		
+	public boolean onOptionsItemSelected(MenuItem item) {	
+				
 		switch (item.getItemId()) {
 			case R.id.resetDB:
 				launchRingDialog(this.findViewById(R.layout.activity_update_station));
@@ -70,12 +75,16 @@ public class UpdateStation extends Activity {
 				updateTexts();
 				break;	
 		}
+				
 		return super.onOptionsItemSelected(item);
 	}
 	
 	private void updateTexts()
 	{
 		getActionBar().setTitle(R.string.title_activity_update_station);
+		
+		textViewNameUpdateStation.setText(R.string.name);
+		buttonUpdateStation.setText(R.string.update);
 	}
 
 	protected void onStart() {
@@ -89,6 +98,8 @@ public class UpdateStation extends Activity {
 		editTextNameUpdateStation = (EditText) findViewById(R.id.editTextNameUpdateStation);
 		editTextLongitudeUpdateStation = (EditText) findViewById(R.id.editTextLongitudeUpdateStation);
 		editTextLatitudeUpdateStation = (EditText) findViewById(R.id.editTextLatitudeUpdateStation);
+		textViewNameUpdateStation = (TextView) findViewById(R.id.textViewNameUpdateStation);
+		buttonUpdateStation = (Button) findViewById(R.id.buttonUpdateStation);
 
 		editTextNameUpdateStation.setText(Datas.GetInstance().GetCurrentStop()
 				.getName());
@@ -108,37 +119,8 @@ public class UpdateStation extends Activity {
 		Log.v(TAG, "Methode onButtonUpdateStationClick");
 
 		try {
-			Stop stop = Datas.GetInstance().GetCurrentStop();
+			DBHelper.getInstance().updateStop(this.getBaseContext(), editTextLatitudeUpdateStation.getText().toString(), editTextLatitudeUpdateStation.getText().toString(), editTextNameUpdateStation.getText().toString());
 
-			if (editTextLatitudeUpdateStation.getText().toString()
-					.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				stop.setLat(Double.parseDouble(editTextLatitudeUpdateStation
-						.getText().toString()));
-			}
-
-			else {
-				stop.setLat(0);
-			}
-
-			if (editTextLongitudeUpdateStation.getText().toString()
-					.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				stop.setLon(Double.parseDouble(editTextLongitudeUpdateStation
-						.getText().toString()));
-			}
-
-			else {
-				stop.setLon(0);
-			}
-
-			stop.setName(editTextNameUpdateStation.getText().toString());
-
-			StopDAO sdao = new StopDAO(this);
-			sdao.open();
-
-			sdao.update(stop);
-
-			sdao.close();
-			
 			MyApplication app = ((MyApplication) this.getApplication());
 			app.initDatas();
 

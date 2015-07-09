@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,6 +25,7 @@ public class ListStationsFragment extends Fragment {
 	
 	private ListView myList;
 	private TextView textViewListStations;
+	private Button buttonAddStations;
 	
 	private Intent intent;
 
@@ -30,6 +33,16 @@ public class ListStationsFragment extends Fragment {
 	
 	private View view;
 	
+	private String transportName;
+	
+	public String getTransportName() {
+		return transportName;
+	}
+
+	public void setTransportName(String transportName) {
+		this.transportName = transportName;
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +59,7 @@ public class ListStationsFragment extends Fragment {
 		
 		myList = (ListView) view.findViewById(R.id.listAllStations);
 		textViewListStations = (TextView) view.findViewById(R.id.textViewListStations);
+		buttonAddStations = (Button) view.findViewById(R.id.buttonAddStations);
 		
 		return view;
 	}
@@ -55,6 +69,7 @@ public class ListStationsFragment extends Fragment {
 		Log.v(TAG, "Init");
 				
 		textViewListStations.setText("Stations " + Datas.GetInstance().GetCurrentLine());
+		buttonAddStations.setText(R.string.add);
 
 		Log.v(TAG, "After setText");
 		
@@ -81,14 +96,17 @@ public class ListStationsFragment extends Fragment {
 				startActivity(intent);
 			}
 		});
-	}
-	
-	public void onButtonAddStationsClick(View view) {
+		
+		buttonAddStations.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View arg0) {
+				Log.v(TAG, "Methode onButtonAddStationsClick");
 
-		Log.v(TAG, "Methode onButtonAddStationsClick");
-
-		intent = new Intent(view.getContext(), AddStation.class);
-		intent.putExtra("Transport", getActivity().getIntent().getStringExtra("TransportName"));
-		startActivity(intent);
+				
+				intent = new Intent(view.getContext(), AddStation.class);
+				intent.putExtra("Transport", transportName);
+				startActivity(intent);
+			}
+		});
 	}
 }

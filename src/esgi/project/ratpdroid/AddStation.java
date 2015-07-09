@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,10 @@ public class AddStation extends Activity {
 	private EditText editTextNameAddStation;
 	private EditText editTextLatitudeAddStation;
 	private EditText editTextLongitudeAddStation;
-
+	
+	private TextView textViewNameStationAddAstation;
+	private Button buttonAddStations;
+	
 	private Intent intent;
 
 	@Override
@@ -56,7 +60,7 @@ public class AddStation extends Activity {
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {		
+	public boolean onOptionsItemSelected(MenuItem item) {	
 		switch (item.getItemId()) {
 			case R.id.resetDB:
 				launchRingDialog(this.findViewById(R.layout.activity_add_station));
@@ -70,12 +74,17 @@ public class AddStation extends Activity {
 				updateTexts();
 				break;	
 		}
+				
 		return super.onOptionsItemSelected(item);
 	}
 	
 	private void updateTexts()
 	{
 		getActionBar().setTitle(R.string.title_activity_add_station);
+		
+		textViewNameStationAddAstation.setText(R.string.name_station);
+		buttonAddStations.setText(R.string.add);
+		textViewAddStation.setText(getResources().getString(R.string.title_activity_add_station) + " " + Datas.GetInstance().GetCurrentLine().toString());
 	}
 
 	protected void onStart() {
@@ -89,9 +98,10 @@ public class AddStation extends Activity {
 		editTextLongitudeAddStation = (EditText) findViewById(R.id.editTextLongitudeAddStation);
 		editTextLatitudeAddStation = (EditText) findViewById(R.id.editTextLatitudeAddStation);
 		textViewAddStation = (TextView) findViewById(R.id.textViewAddStation);
-
-		textViewAddStation.setText("Ajouter une station "
-				+ Datas.GetInstance().GetCurrentLine());
+		textViewNameStationAddAstation = (TextView) findViewById(R.id.textViewNameStationAddAstation);
+		buttonAddStations = (Button) findViewById(R.id.buttonAddStations);
+		
+		textViewAddStation.setText(getResources().getString(R.string.title_activity_add_station) + " " + Datas.GetInstance().GetCurrentLine().toString());
 	}
 
 	public void onButtonAddStationsClick(View view) {
@@ -99,39 +109,8 @@ public class AddStation extends Activity {
 		Log.v(TAG, "Methode onButtonAddStationsClick");
 
 		try {
-			Stop stop = new Stop();
-			stop.setId(randInt(0, 1634));
-			stop.setIdLine(Datas.GetInstance().GetCurrentLine().getShortName());
+			DBHelper.getInstance().addStop(this.getBaseContext(), editTextLatitudeAddStation.getText().toString(), editTextLongitudeAddStation.getText().toString(), editTextNameAddStation.getText().toString());
 
-			if (editTextLatitudeAddStation.getText().toString()
-					.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				stop.setLat(Double.parseDouble(editTextLatitudeAddStation
-						.getText().toString()));
-			}
-
-			else {
-				stop.setLat(0);
-			}
-
-			if (editTextLongitudeAddStation.getText().toString()
-					.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				stop.setLon(Double.parseDouble(editTextLongitudeAddStation
-						.getText().toString()));
-			}
-
-			else {
-				stop.setLon(0);
-			}
-
-			stop.setName(editTextNameAddStation.getText().toString());
-
-			StopDAO sdao = new StopDAO(this);
-			sdao.open();
-
-			sdao.insert(stop);
-
-			sdao.close();
-			
 			MyApplication app = ((MyApplication) this.getApplication());
 			app.initDatas();
 
@@ -149,15 +128,6 @@ public class AddStation extends Activity {
 		}
 	}
 
-	public int randInt(int min, int max) {
-
-		Random rand = new Random();
-
-		int randomNum = rand.nextInt((max - min) + 1) + min;
-
-		return randomNum;
-	}
-	
 	public void launchRingDialog(View view) {
 		final ProgressDialog ringProgressDialog = ProgressDialog
 				.show(AddStation.this,

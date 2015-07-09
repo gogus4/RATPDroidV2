@@ -54,7 +54,11 @@ public class ListStations extends Activity {
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {		
+	public boolean onOptionsItemSelected(MenuItem item) {	
+		
+		SearchFragment fragmentSearch = (SearchFragment) getFragmentManager().findFragmentById(R.id.searchFragment);
+		ListStationsFragment listStationsFragment = (ListStationsFragment) getFragmentManager().findFragmentById(R.id.listStationsFragment);
+		
 		switch (item.getItemId()) {
 			case R.id.resetDB:
 				launchRingDialog(this.findViewById(R.layout.activity_list_stations));
@@ -68,6 +72,10 @@ public class ListStations extends Activity {
 				updateTexts();
 				break;	
 		}
+		
+		fragmentSearch.update();
+		listStationsFragment.init();
+		
 		return super.onOptionsItemSelected(item);
 	}
 	
@@ -98,11 +106,10 @@ public class ListStations extends Activity {
 	
 	private void initFragments()
 	{
-		// Log.v(TAG, "Init fragment ListTransportsFragment with value : " + getIntent().getStringExtra("Transport"));
-		
 		FragmentManager fragmentManager = this.getFragmentManager();
 		ListStationsFragment fragmentStations = (ListStationsFragment) fragmentManager.findFragmentById(R.id.listStationsFragment);
 		
+		fragmentStations.setTransportName(getIntent().getStringExtra("Transport"));
 		fragmentStations.init();
 	}
 }

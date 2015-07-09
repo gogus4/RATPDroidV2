@@ -19,6 +19,7 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/textViewNameUpdateStation"
                 style="@style/textViewStyle"
                 android:layout_marginTop="10dp"
                 android:text="@string/name_update_station" />

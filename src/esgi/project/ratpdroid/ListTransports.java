@@ -56,7 +56,12 @@ public class ListTransports extends Activity {
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {		
+	public boolean onOptionsItemSelected(MenuItem item) {	
+		
+		ListTransportsFragment listTransportsfragment = (ListTransportsFragment) getFragmentManager().findFragmentById(R.id.listTransportsFragment);
+		ListStationsFragment listStationsFragment = (ListStationsFragment) getFragmentManager().findFragmentById(R.id.listStationsFragment);
+		SearchFragment fragmentSearch = (SearchFragment) getFragmentManager().findFragmentById(R.id.searchFragment);
+
 		switch (item.getItemId()) {
 			case R.id.resetDB:
 				launchRingDialog(this.findViewById(R.layout.activity_list_transports));
@@ -70,6 +75,13 @@ public class ListTransports extends Activity {
 				updateTexts();
 				break;	
 		}
+		
+		listTransportsfragment.init();
+		fragmentSearch.update();
+		
+		if(listStationsFragment != null && listStationsFragment.isInLayout())
+			listStationsFragment.init();
+		
 		return super.onOptionsItemSelected(item);
 	}
 	

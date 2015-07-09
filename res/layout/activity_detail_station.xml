@@ -27,7 +27,8 @@
             <TextView
                 style="@style/textViewStyle"
                 android:text="@string/name"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:id="@+id/nameDetailStation" />
 
             <TextView
                 android:id="@+id/textViewNameStation"

@@ -6,6 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Random;
+
+import esgi.project.ratpdroid.Datas;
+import esgi.project.ratpdroid.db.StopDAO;
+import esgi.project.ratpdroid.model.Stop;
 
 import android.content.Context;
 import android.util.Log;
@@ -51,5 +56,88 @@ public class DBHelper {
 			Log.v(TAG, "ioexeption");
 			e.printStackTrace();
 		}
+	}
+	
+	public void updateStop(Context context,String latitude, String longitude, String name)
+	{
+		Stop stop = Datas.GetInstance().GetCurrentStop();
+
+		if (latitude.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+			stop.setLat(Double.parseDouble(latitude));
+		}
+
+		else {
+			stop.setLat(0);
+		}
+
+		if (longitude.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+			stop.setLon(Double.parseDouble(longitude));
+		}
+
+		else {
+			stop.setLon(0);
+		}
+
+		stop.setName(name);
+
+		StopDAO sdao = new StopDAO(context);
+		sdao.open();
+
+		sdao.update(stop);
+
+		sdao.close();
+	}
+	
+	public void addStop(Context context,String latitude, String longitude, String name)
+	{
+		Stop stop = new Stop();
+		stop.setId(randInt(0, 1634));
+		stop.setIdLine(Datas.GetInstance().GetCurrentLine().getShortName());
+
+		if (latitude
+				.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+			stop.setLat(Double.parseDouble(latitude));
+		}
+
+		else {
+			stop.setLat(0);
+		}
+
+		if (longitude
+				.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+			stop.setLon(Double.parseDouble(longitude));
+		}
+
+		else {
+			stop.setLon(0);
+		}
+
+		stop.setName(name);
+
+		StopDAO sdao = new StopDAO(context);
+		sdao.open();
+
+		sdao.insert(stop);
+
+		sdao.close();
+	}
+	
+	public void removeStop(Context context)
+	{
+		StopDAO sdao = new StopDAO(context);
+		sdao.open();
+
+		sdao.remove(Datas.GetInstance().GetCurrentStop());
+
+		sdao.close();
+	}
+	
+	private int randInt(int min, int max) {
+
+		Random rand = new Random();
+
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+
+		return randomNum;
 	}
 }

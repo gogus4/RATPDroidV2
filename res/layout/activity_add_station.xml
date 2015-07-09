@@ -20,12 +20,13 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/textViewNameStationAddAstation"
                 style="@style/textViewStyle"
                 android:layout_marginTop="10dp"
                 android:text="@string/name_station" />
 
             <EditText style="@style/editTextStyle"
-                android:id="@+id/editTextNameAddStation" />
+                		android:id="@+id/editTextNameAddStation" />
         </LinearLayout>
 
         <LinearLayout
