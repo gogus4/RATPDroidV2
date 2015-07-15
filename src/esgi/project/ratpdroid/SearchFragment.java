@@ -40,7 +40,7 @@ public class SearchFragment extends Fragment {
 		
 		buttonSearch.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Log.v(TAG, "Click sur le bouton search");
+				// Log.v(TAG, "Click sur le bouton search");
 
 				for (Stop stop : Datas.GetInstance().GetStops()) {
 					if (stop.getName().contains(

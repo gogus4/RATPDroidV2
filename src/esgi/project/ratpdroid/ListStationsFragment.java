@@ -69,21 +69,25 @@ public class ListStationsFragment extends Fragment {
 	public void init() {
 		Log.v(TAG, "Init");
 
-		textViewListStations.setText("Stations "
-				+ Datas.GetInstance().GetCurrentLine());
-		buttonAddStations.setText(R.string.add);
-
-		// Log.v(TAG, "After setText");
-
-		StopDAO sdao = new StopDAO(view.getContext());
-		sdao.open();
-
-		// Log.v(TAG, "After StopDAO");
-
-		stops = sdao.getByLine(Datas.GetInstance().GetCurrentLine()
-				.getShortName());
-
-		sdao.close();
+		try
+		{
+			textViewListStations.setText("Stations " + Datas.GetInstance().GetCurrentLine());
+			buttonAddStations.setText(R.string.add);
+	
+			// Log.v(TAG, "After setText");
+	
+			StopDAO sdao = new StopDAO(view.getContext());
+			sdao.open();
+	
+			// Log.v(TAG, "After StopDAO");
+	
+			stops = sdao.getByLine(Datas.GetInstance().GetCurrentLine().getShortName());
+	
+			sdao.close();
+		}
+		catch(Exception E){
+			// Log.v(TAG, E.getMessage());
+		}
 
 		myList.setAdapter(new ArrayAdapter<Stop>(view.getContext(),
 				R.layout.activity_list, stops));

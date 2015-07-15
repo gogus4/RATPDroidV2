@@ -130,6 +130,7 @@ public class AddStation extends Activity {
 					.setMessage(
 							"Un problème est survenue lors de l'ajout de la station")
 					.setIcon(android.R.drawable.ic_dialog_alert).show();
+			
 			Log.v(TAG, "CATCH " + E.getMessage());
 		}
 	}

@@ -59,7 +59,7 @@ public class ListStations extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Log.v(TAG, "Methode onOptionsItemSelected BEFORE");
+		// Log.v(TAG, "Methode onOptionsItemSelected BEFORE");
 
 		SearchFragment fragmentSearch = (SearchFragment) getFragmentManager()
 				.findFragmentById(R.id.searchFragment);
@@ -85,7 +85,7 @@ public class ListStations extends Activity {
 		if (listStationsFragment != null)
 			listStationsFragment.init();
 
-		Log.v(TAG, "Methode onOptionsItemSelected AFTER");
+		// Log.v(TAG, "Methode onOptionsItemSelected AFTER");
 
 		return super.onOptionsItemSelected(item);
 	}

@@ -95,8 +95,8 @@ public class DetailStation extends Activity {
 
 		Log.v(TAG, "Methode onStart");
 
-		Log.v(TAG, "Nom de la station : "
-				+ Datas.GetInstance().GetCurrentStop());
+		//Log.v(TAG, "Nom de la station : "
+				//+ Datas.GetInstance().GetCurrentStop());
 
 		intent = new Intent(this, UpdateStation.class);
 
@@ -137,7 +137,6 @@ public class DetailStation extends Activity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
-								Log.v(TAG, "Click sur Oui");
 
 								DBHelper.getInstance().removeStop(that);
 

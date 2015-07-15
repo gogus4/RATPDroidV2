@@ -113,10 +113,10 @@ public class ListTransportsFragment extends Fragment {
 				}
 				
 				else {
-					Log.v(TAG, "Before Start Activity");
+					//Log.v(TAG, "Before Start Activity");
 					Log.v(TAG,"Line : " + Datas.GetInstance().GetCurrentLine());
 					startActivity(intent);
-					Log.v(TAG, "After Start Activity");
+					//Log.v(TAG, "After Start Activity");
 				}
 			}
 		});

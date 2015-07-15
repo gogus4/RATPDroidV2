@@ -44,7 +44,7 @@ public class MyApplication extends Application {
 			String destPath = "/data/data/" + getPackageName()
 					+ "/databases/ratp.db";
 
-			Log.v(TAG, destPath);
+			// Log.v(TAG, destPath);
 
 			File f = new File(destPath);
 			f.delete();

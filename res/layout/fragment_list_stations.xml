@@ -16,14 +16,13 @@
         <ListView
             android:id="@+id/listAllStations"
             style="@style/listViewStyle"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             android:layout_weight="10" />
 
         <Button
             android:id="@+id/buttonAddStations"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:layout_marginTop="5dp"
             android:text="@string/add" />
     </LinearLayout>
