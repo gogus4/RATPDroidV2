@@ -104,8 +104,7 @@ public class ListTransports extends Activity {
 		ListTransportsFragment fragmentTransport = (ListTransportsFragment) fragmentManager
 				.findFragmentById(R.id.listTransportsFragment);
 
-		fragmentTransport
-				.setTransports(getIntent().getStringExtra("Transport"));
+		fragmentTransport.setTransports(getIntent().getStringExtra("Transport"));
 		fragmentTransport.init();
 	}
 

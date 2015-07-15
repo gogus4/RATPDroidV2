@@ -70,7 +70,6 @@ public class MainActivity extends Activity {
 			break;
 		case R.id.english:
 			ConfigHelper.getInstance().changeLang(getBaseContext(), "en");
-
 			break;
 		}
 

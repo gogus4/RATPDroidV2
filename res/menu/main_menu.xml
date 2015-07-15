@@ -28,7 +28,7 @@
 
         <item
             android:id="@+id/english"
-            android:title="Englais"
+            android:title="Anglais"
             android:showAsAction="never"
             android:icon="@drawable/en_icon"/>
     </menu>
