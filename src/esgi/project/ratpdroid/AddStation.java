@@ -1,10 +1,8 @@
 package esgi.project.ratpdroid;
 
-import java.util.Random;
-import esgi.project.ratpdroid.db.StopDAO;
-import esgi.project.ratpdroid.model.Stop;
 import esgi.project.ratpdroid.utils.ConfigHelper;
 import esgi.project.ratpdroid.utils.DBHelper;
+import esgi.project.ratpdroid.utils.UIHelper;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AddStation extends Activity {
 
@@ -30,23 +27,23 @@ public class AddStation extends Activity {
 	private EditText editTextNameAddStation;
 	private EditText editTextLatitudeAddStation;
 	private EditText editTextLongitudeAddStation;
-	
+
 	private TextView textViewNameStationAddAstation;
 	private Button buttonAddStations;
-	
+
 	private Intent intent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_station);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setTitle(R.string.title_activity_add_station);
 
 		Log.v(TAG, "Methode onCreate");
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -54,37 +51,41 @@ public class AddStation extends Activity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			ActionBar actionBar = getActionBar();
 			actionBar.setDisplayShowHomeEnabled(false);
+
+			UIHelper.getInstance().setSearchActionBar(this, menu,
+					getComponentName());
 		}
 
 		return true;
 	}
-	
+
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {	
+	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.resetDB:
-				launchRingDialog(this.findViewById(R.layout.activity_add_station));
-				break;
-			case R.id.french:
-				ConfigHelper.getInstance().changeLang(getBaseContext(),"fr");
-				updateTexts();
-				break;
-			case R.id.english:
-				ConfigHelper.getInstance().changeLang(getBaseContext(),"en");
-				updateTexts();
-				break;	
+		case R.id.resetDB:
+			launchRingDialog(this.findViewById(R.layout.activity_add_station));
+			break;
+		case R.id.french:
+			ConfigHelper.getInstance().changeLang(getBaseContext(), "fr");
+			updateTexts();
+			break;
+		case R.id.english:
+			ConfigHelper.getInstance().changeLang(getBaseContext(), "en");
+			updateTexts();
+			break;
 		}
-				
+
 		return super.onOptionsItemSelected(item);
 	}
-	
-	private void updateTexts()
-	{
+
+	private void updateTexts() {
 		getActionBar().setTitle(R.string.title_activity_add_station);
-		
+
 		textViewNameStationAddAstation.setText(R.string.name_station);
 		buttonAddStations.setText(R.string.add);
-		textViewAddStation.setText(getResources().getString(R.string.title_activity_add_station) + " " + Datas.GetInstance().GetCurrentLine().toString());
+		textViewAddStation.setText(getResources().getString(
+				R.string.title_activity_add_station)
+				+ " " + Datas.GetInstance().GetCurrentLine().toString());
 	}
 
 	protected void onStart() {
@@ -100,8 +101,10 @@ public class AddStation extends Activity {
 		textViewAddStation = (TextView) findViewById(R.id.textViewAddStation);
 		textViewNameStationAddAstation = (TextView) findViewById(R.id.textViewNameStationAddAstation);
 		buttonAddStations = (Button) findViewById(R.id.buttonAddStations);
-		
-		textViewAddStation.setText(getResources().getString(R.string.title_activity_add_station) + " " + Datas.GetInstance().GetCurrentLine().toString());
+
+		textViewAddStation.setText(getResources().getString(
+				R.string.title_activity_add_station)
+				+ " " + Datas.GetInstance().GetCurrentLine().toString());
 	}
 
 	public void onButtonAddStationsClick(View view) {
@@ -109,7 +112,10 @@ public class AddStation extends Activity {
 		Log.v(TAG, "Methode onButtonAddStationsClick");
 
 		try {
-			DBHelper.getInstance().addStop(this.getBaseContext(), editTextLatitudeAddStation.getText().toString(), editTextLongitudeAddStation.getText().toString(), editTextNameAddStation.getText().toString());
+			DBHelper.getInstance().addStop(this.getBaseContext(),
+					editTextLatitudeAddStation.getText().toString(),
+					editTextLongitudeAddStation.getText().toString(),
+					editTextNameAddStation.getText().toString());
 
 			MyApplication app = ((MyApplication) this.getApplication());
 			app.initDatas();

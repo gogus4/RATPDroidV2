@@ -1,6 +1,5 @@
 package esgi.project.ratpdroid;
 
-import esgi.project.ratpdroid.model.Stop;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import esgi.project.ratpdroid.model.Stop;
 
 public class SearchFragment extends Fragment {
 	
@@ -18,7 +18,7 @@ public class SearchFragment extends Fragment {
 	private ImageView buttonSearch;
 	private EditText editTextSearch;
 	private Intent intent;
-	
+		
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

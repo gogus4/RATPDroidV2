@@ -1,8 +1,8 @@
 package esgi.project.ratpdroid;
 
-import esgi.project.ratpdroid.db.StopDAO;
 import esgi.project.ratpdroid.utils.ConfigHelper;
 import esgi.project.ratpdroid.utils.DBHelper;
+import esgi.project.ratpdroid.utils.UIHelper;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DetailStation extends Activity {
 
@@ -27,26 +26,26 @@ public class DetailStation extends Activity {
 	private TextView textViewNameStation;
 	private TextView textViewLongitudeStation;
 	private TextView textViewLatitudeStation;
-	
+
 	private Button buttonUpdateStation;
 	private Button buttonDeleteStation;
-	private TextView textViewStyle;
 	private TextView nameDetailStation;
-	
+
 	private Intent intent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_station);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setTitle(R.string.title_activity_detail_station);
-		getActionBar().setSubtitle(Datas.GetInstance().GetCurrentStop().toString());
+		getActionBar().setSubtitle(
+				Datas.GetInstance().GetCurrentStop().toString());
 
 		Log.v(TAG, "Methode onCreate");
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -54,35 +53,38 @@ public class DetailStation extends Activity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			ActionBar actionBar = getActionBar();
 			actionBar.setDisplayShowHomeEnabled(false);
+
+			UIHelper.getInstance().setSearchActionBar(this, menu,
+					getComponentName());
 		}
 
 		return true;
 	}
-	
+
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {	
-				
+	public boolean onOptionsItemSelected(MenuItem item) {
+
 		switch (item.getItemId()) {
-			case R.id.resetDB:
-				launchRingDialog(this.findViewById(R.layout.activity_detail_station));
-				break;
-			case R.id.french:
-				ConfigHelper.getInstance().changeLang(getBaseContext(),"fr");
-				updateTexts();
-				break;
-			case R.id.english:
-				ConfigHelper.getInstance().changeLang(getBaseContext(),"en");
-				updateTexts();
-				break;	
+		case R.id.resetDB:
+			launchRingDialog(this
+					.findViewById(R.layout.activity_detail_station));
+			break;
+		case R.id.french:
+			ConfigHelper.getInstance().changeLang(getBaseContext(), "fr");
+			updateTexts();
+			break;
+		case R.id.english:
+			ConfigHelper.getInstance().changeLang(getBaseContext(), "en");
+			updateTexts();
+			break;
 		}
-				
+
 		return super.onOptionsItemSelected(item);
 	}
-	
-	private void updateTexts()
-	{
+
+	private void updateTexts() {
 		getActionBar().setTitle(R.string.title_activity_detail_station);
-		
+
 		buttonUpdateStation.setText(R.string.update);
 		buttonDeleteStation.setText(R.string.delete);
 		nameDetailStation.setText(R.string.name);
@@ -101,7 +103,7 @@ public class DetailStation extends Activity {
 		textViewNameStation = (TextView) findViewById(R.id.textViewNameStation);
 		textViewLongitudeStation = (TextView) findViewById(R.id.textViewLongitudeStation);
 		textViewLatitudeStation = (TextView) findViewById(R.id.textViewLatitudeStation);
-		
+
 		buttonUpdateStation = (Button) findViewById(R.id.buttonUpdateStation);
 		buttonDeleteStation = (Button) findViewById(R.id.buttonDeleteStation);
 		nameDetailStation = (TextView) findViewById(R.id.nameDetailStation);
@@ -126,7 +128,6 @@ public class DetailStation extends Activity {
 	public void onButtonDeleteClick(View view) {
 		Log.v(TAG, "Methode onButtonDeleteClick");
 
-		
 		final Context that = this;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Supprimer la station")
@@ -139,8 +140,9 @@ public class DetailStation extends Activity {
 								Log.v(TAG, "Click sur Oui");
 
 								DBHelper.getInstance().removeStop(that);
-								
-								MyApplication app = ((MyApplication) ((Activity) that).getApplication());
+
+								MyApplication app = ((MyApplication) ((Activity) that)
+										.getApplication());
 								app.initDatas();
 
 								intent = new Intent(that, ListStations.class);
@@ -149,7 +151,7 @@ public class DetailStation extends Activity {
 							}
 						}).setNegativeButton("Non", null).show();
 	}
-	
+
 	public void launchRingDialog(View view) {
 		final ProgressDialog ringProgressDialog = ProgressDialog
 				.show(DetailStation.this,

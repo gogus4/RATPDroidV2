@@ -1,22 +1,18 @@
 package esgi.project.ratpdroid;
 
-import java.util.Locale;
-
 import esgi.project.ratpdroid.utils.ConfigHelper;
 import esgi.project.ratpdroid.utils.DBHelper;
-
+import esgi.project.ratpdroid.utils.UIHelper;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 public class ListTransports extends Activity {
 
@@ -27,7 +23,7 @@ public class ListTransports extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_transports);
-			
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setTitle(R.string.title_activity_list_transports);
 		getActionBar().setSubtitle(getIntent().getStringExtra("Transport"));
@@ -39,10 +35,10 @@ public class ListTransports extends Activity {
 	protected void onStart() {
 		super.onStart();
 		Log.v(TAG, "Methode onStart");
-		
+
 		initFragments();
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -50,57 +46,69 @@ public class ListTransports extends Activity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			ActionBar actionBar = getActionBar();
 			actionBar.setDisplayShowHomeEnabled(false);
+
+			UIHelper.getInstance().setSearchActionBar(this, menu,
+					getComponentName());
 		}
 
 		return true;
 	}
-	
+
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {	
-		
-		ListTransportsFragment listTransportsfragment = (ListTransportsFragment) getFragmentManager().findFragmentById(R.id.listTransportsFragment);
-		ListStationsFragment listStationsFragment = (ListStationsFragment) getFragmentManager().findFragmentById(R.id.listStationsFragment);
-		SearchFragment fragmentSearch = (SearchFragment) getFragmentManager().findFragmentById(R.id.searchFragment);
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		ListTransportsFragment listTransportsfragment = (ListTransportsFragment) getFragmentManager()
+				.findFragmentById(R.id.listTransportsFragment);
+		ListStationsFragment listStationsFragment = (ListStationsFragment) getFragmentManager()
+				.findFragmentById(R.id.listStationsFragment);
+
+		SearchFragment fragmentSearch = (SearchFragment) getFragmentManager()
+				.findFragmentById(R.id.searchFragment);
 
 		switch (item.getItemId()) {
-			case R.id.resetDB:
-				launchRingDialog(this.findViewById(R.layout.activity_list_transports));
-				break;
-			case R.id.french:
-				ConfigHelper.getInstance().changeLang(getBaseContext(),"fr");
-				updateTexts();
-				break;
-			case R.id.english:
-				ConfigHelper.getInstance().changeLang(getBaseContext(),"en");
-				updateTexts();
-				break;	
+		case R.id.resetDB:
+			launchRingDialog(this
+					.findViewById(R.layout.activity_list_transports));
+			break;
+		case R.id.french:
+			ConfigHelper.getInstance().changeLang(getBaseContext(), "fr");
+			updateTexts();
+			break;
+		case R.id.english:
+			ConfigHelper.getInstance().changeLang(getBaseContext(), "en");
+			updateTexts();
+			break;
 		}
-		
-		listTransportsfragment.init();
-		fragmentSearch.update();
-		
-		if(listStationsFragment != null && listStationsFragment.isInLayout())
+
+		if (listTransportsfragment != null)
+			listTransportsfragment.init();
+
+		if (fragmentSearch != null)
+			fragmentSearch.update();
+
+		if (listStationsFragment != null && listStationsFragment.isInLayout())
 			listStationsFragment.init();
-		
+
 		return super.onOptionsItemSelected(item);
 	}
-	
-	private void updateTexts()
-	{
+
+	private void updateTexts() {
 		getActionBar().setTitle(R.string.title_activity_list_transports);
 	}
-	
-	private void initFragments()
-	{
-		Log.v(TAG, "Init fragment ListTransportsFragment with value : " + getIntent().getStringExtra("Transport"));
-		
+
+	private void initFragments() {
+		Log.v(TAG, "Init fragment ListTransportsFragment with value : "
+				+ getIntent().getStringExtra("Transport"));
+
 		FragmentManager fragmentManager = this.getFragmentManager();
-		ListTransportsFragment fragmentTransport = (ListTransportsFragment)fragmentManager.findFragmentById(R.id.listTransportsFragment);
-		
-		fragmentTransport.setTransports(getIntent().getStringExtra("Transport"));
+		ListTransportsFragment fragmentTransport = (ListTransportsFragment) fragmentManager
+				.findFragmentById(R.id.listTransportsFragment);
+
+		fragmentTransport
+				.setTransports(getIntent().getStringExtra("Transport"));
 		fragmentTransport.init();
 	}
-	
+
 	public void launchRingDialog(View view) {
 		final ProgressDialog ringProgressDialog = ProgressDialog
 				.show(ListTransports.this,

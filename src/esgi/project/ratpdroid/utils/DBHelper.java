@@ -7,32 +7,30 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Random;
-
 import esgi.project.ratpdroid.Datas;
 import esgi.project.ratpdroid.db.StopDAO;
 import esgi.project.ratpdroid.model.Stop;
-
 import android.content.Context;
 import android.util.Log;
 
 public class DBHelper {
 
 	private static final String TAG = "DBHelper";
-	
-	private DBHelper()
-	{}
- 
+
+	private DBHelper() {
+	}
+
 	private static DBHelper instance = new DBHelper();
- 
-	public static DBHelper getInstance()
-	{	
+
+	public static DBHelper getInstance() {
 		return instance;
 	}
-	
+
 	public void resetBDD(Context context) {
 		try {
 
-			String destPath = "/data/data/" + context.getPackageName() + "/databases/ratp.db";
+			String destPath = "/data/data/" + context.getPackageName()
+					+ "/databases/ratp.db";
 
 			Log.v(TAG, destPath);
 
@@ -57,9 +55,9 @@ public class DBHelper {
 			e.printStackTrace();
 		}
 	}
-	
-	public void updateStop(Context context,String latitude, String longitude, String name)
-	{
+
+	public void updateStop(Context context, String latitude, String longitude,
+			String name) {
 		Stop stop = Datas.GetInstance().GetCurrentStop();
 
 		if (latitude.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
@@ -87,15 +85,14 @@ public class DBHelper {
 
 		sdao.close();
 	}
-	
-	public void addStop(Context context,String latitude, String longitude, String name)
-	{
+
+	public void addStop(Context context, String latitude, String longitude,
+			String name) {
 		Stop stop = new Stop();
 		stop.setId(randInt(0, 1634));
 		stop.setIdLine(Datas.GetInstance().GetCurrentLine().getShortName());
 
-		if (latitude
-				.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+		if (latitude.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
 			stop.setLat(Double.parseDouble(latitude));
 		}
 
@@ -103,8 +100,7 @@ public class DBHelper {
 			stop.setLat(0);
 		}
 
-		if (longitude
-				.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+		if (longitude.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
 			stop.setLon(Double.parseDouble(longitude));
 		}
 
@@ -121,9 +117,8 @@ public class DBHelper {
 
 		sdao.close();
 	}
-	
-	public void removeStop(Context context)
-	{
+
+	public void removeStop(Context context) {
 		StopDAO sdao = new StopDAO(context);
 		sdao.open();
 
@@ -131,7 +126,7 @@ public class DBHelper {
 
 		sdao.close();
 	}
-	
+
 	private int randInt(int min, int max) {
 
 		Random rand = new Random();

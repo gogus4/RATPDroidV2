@@ -1,8 +1,5 @@
 package esgi.project.ratpdroid.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 public class Line {
 
 	private int id;

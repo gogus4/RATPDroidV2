@@ -2,17 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/resetDB"
-        android:icon="@drawable/reload_refresh"
+        android:id="@+id/search"
+        android:title="@string/search"
         android:showAsAction="ifRoom"
-        android:title="Rafraichir la base de données"/>
-    
+        android:actionViewClass="android.widget.SearchView" />
+        
     <item
-    android:id="@+id/changeLanguage"
+    android:id="@+id/parameter"
     android:showAsAction="always"
-    android:title="Changer la langue"
+    android:title="Paramètre"
     android:icon="@drawable/parameter">
+    
     <menu>
+            <item
+		        android:id="@+id/resetDB"
+		        android:icon="@drawable/reload_refresh"
+		        android:showAsAction="ifRoom"
+		        android:title="Rafraichir la base de données"/>
+        
         <item
             android:id="@+id/french"
             android:title="Français"

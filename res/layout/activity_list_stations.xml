@@ -7,13 +7,13 @@
         android:background="@color/background_color"
         android:orientation="vertical" >
 
-        <fragment
+        <!-- <fragment
 	        android:id="@+id/searchFragment"
 	        android:name="esgi.project.ratpdroid.SearchFragment"
 	        android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_margin="10dp">
-    	</fragment>
+    	</fragment> -->
         
          <fragment
 	        android:id="@+id/listStationsFragment"
