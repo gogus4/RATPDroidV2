@@ -18,17 +18,17 @@
 		        android:id="@+id/resetDB"
 		        android:icon="@drawable/reload_refresh"
 		        android:showAsAction="ifRoom"
-		        android:title="Rafraichir la base de données"/>
+		        android:title="@string/resetBDD"/>
         
         <item
             android:id="@+id/french"
-            android:title="Français"
+            android:title="@string/language_fr"
             android:showAsAction="never"
             android:icon="@drawable/fr_icon"/>
 
         <item
             android:id="@+id/english"
-            android:title="Anglais"
+            android:title="@string/language_en"
             android:showAsAction="never"
             android:icon="@drawable/en_icon"/>
     </menu>

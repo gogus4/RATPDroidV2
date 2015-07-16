@@ -25,5 +25,8 @@
     <string name="name_update_station">Nom souhaité de la station : </string>
     <string name="title_activity_google_maps">GoogleMaps</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="resetBDD">Rafraichir la base de données</string>
+    <string name="language_fr">Francais</string>
+    <string name="language_en">English</string>
 
 </resources>

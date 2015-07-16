@@ -24,5 +24,8 @@
     <string name="tramway">TRAMWAY</string>
     <string name="update">Update</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="resetBDD">Refresh database</string>
+    <string name="language_fr">Francais</string>
+    <string name="language_en">English</string>
 
 </resources>
